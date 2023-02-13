@@ -423,6 +423,8 @@ function loadItems(page) {
   loading(true);
   performLfmRequest('jsonitems', {show_list, sort_type, sort_order, page: page || 1}, 'html')
     .done(function (data) {
+      sort_order = sort_order === 'asc' ? 'desc' : 'asc';
+      
       selected = [];
       var response = JSON.parse(data);
       var working_dir = response.working_dir;
