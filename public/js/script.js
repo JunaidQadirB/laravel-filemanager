@@ -1,6 +1,7 @@
 var lfm_route = location.origin + location.pathname;
 var show_list;
-var sort_type = 'alphabetic';
+var sort_type = 'time';
+var sort_order = 'desc';
 var multi_selection_enabled = false;
 var selected = [];
 var items = [];
@@ -420,7 +421,7 @@ function createPagination(paginationSetting) {
 
 function loadItems(page) {
   loading(true);
-  performLfmRequest('jsonitems', {show_list: show_list, sort_type: sort_type, page: page || 1}, 'html')
+  performLfmRequest('jsonitems', {show_list, sort_type, sort_order, page: page || 1}, 'html')
     .done(function (data) {
       selected = [];
       var response = JSON.parse(data);
