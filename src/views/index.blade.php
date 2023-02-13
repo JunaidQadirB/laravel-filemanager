@@ -250,11 +250,13 @@
     var sortings = [
       {
         by: 'alphabetic',
+        order: 'desc',
         icon: 'sort-alpha-down',
         label: lang['nav-sort-alphabetic']
       },
       {
         by: 'time',
+        order: 'desc',
         icon: 'sort-numeric-down',
         label: lang['nav-sort-time']
       }

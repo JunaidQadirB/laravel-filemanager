@@ -200,14 +200,22 @@ class LfmPath
     public function sortByColumn($arr_items)
     {
         $sort_by = $this->helper->input('sort_type');
+        $sort_order = $this->helper->input('sort_order');
+
         if (in_array($sort_by, ['name', 'time'])) {
             $key_to_sort = $sort_by;
         } else {
             $key_to_sort = 'name';
         }
 
-        uasort($arr_items, function ($a, $b) use ($key_to_sort) {
-            return strcasecmp($a->{$key_to_sort}, $b->{$key_to_sort});
+        $sort_order = strtolower($sort_order);
+
+        uasort($arr_items, function ($a, $b) use ($key_to_sort, $sort_order) {
+            if ($sort_order == 'desc') {
+                return strcasecmp($b->{$key_to_sort}, $a->{$key_to_sort});
+            } else {
+                return strcasecmp($a->{$key_to_sort}, $b->{$key_to_sort});
+            }
         });
 
         return $arr_items;
